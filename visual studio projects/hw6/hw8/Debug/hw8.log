@@ -1,0 +1,14 @@
+﻿  interface.cc
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(66): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(69): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(72): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(75): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(78): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(81): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(106): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(106): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(108): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(108): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\hw8\interface.cc(125): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  hw8.vcxproj -> C:\Users\zhaox\OneDrive\IUSB\C481\visual studio projects\hw6\Debug\hw8.exe
+  hw8.vcxproj -> C:\Users\zhaox\OneDrive\IUSB\C481\visual studio projects\hw6\Debug\hw8.pdb (Partial PDB)

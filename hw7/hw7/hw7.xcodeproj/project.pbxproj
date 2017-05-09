@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D448E621EB788B1002E5749 /* Jupiter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1D448E611EB788B1002E5749 /* Jupiter.cc */; };
+		1DD045671E8047A400AF8271 /* Saturn.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DD045661E8047A400AF8271 /* Saturn.cc */; };
+		1DE6504D1E7077EF0019A210 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6504C1E7077EF0019A210 /* Cocoa.framework */; };
+		1DE6504F1E7077F90019A210 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6504E1E7077F90019A210 /* GLUT.framework */; };
+		1DE650511E7077FF0019A210 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE650501E7077FF0019A210 /* OpenGL.framework */; };
+		1DE6505F1E7078AD0019A210 /* trackball.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE650531E7078AD0019A210 /* trackball.cc */; };
+		1DE650601E7078AD0019A210 /* Sun.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE650551E7078AD0019A210 /* Sun.cc */; };
+		1DE650611E7078AD0019A210 /* solar.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE650561E7078AD0019A210 /* solar.cc */; };
+		1DE650621E7078AD0019A210 /* Planet.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE650581E7078AD0019A210 /* Planet.cc */; };
+		1DE650631E7078AD0019A210 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 1DE650591E7078AD0019A210 /* Makefile */; };
+		1DE650641E7078AD0019A210 /* Earth.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6505C1E7078AD0019A210 /* Earth.cc */; };
+		1DE650651E7078AD0019A210 /* Celestial.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6505E1E7078AD0019A210 /* Celestial.cc */; };
+		1DE6506C1E707F110019A210 /* Mars.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1DE650661E707F110019A210 /* Mars.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1DE6503F1E7077D90019A210 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1D448E5E1EB78879002E5749 /* Jupiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jupiter.h; sourceTree = "<group>"; };
+		1D448E611EB788B1002E5749 /* Jupiter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Jupiter.cc; sourceTree = "<group>"; };
+		1DD045661E8047A400AF8271 /* Saturn.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Saturn.cc; sourceTree = "<group>"; };
+		1DD045681E8047AD00AF8271 /* Saturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saturn.h; sourceTree = "<group>"; };
+		1DE650411E7077D90019A210 /* hw7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hw7; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DE6504C1E7077EF0019A210 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1DE6504E1E7077F90019A210 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		1DE650501E7077FF0019A210 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		1DE650521E7078AD0019A210 /* trackball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trackball.h; sourceTree = "<group>"; };
+		1DE650531E7078AD0019A210 /* trackball.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trackball.cc; sourceTree = "<group>"; };
+		1DE650541E7078AD0019A210 /* Sun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sun.h; sourceTree = "<group>"; };
+		1DE650551E7078AD0019A210 /* Sun.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sun.cc; sourceTree = "<group>"; };
+		1DE650561E7078AD0019A210 /* solar.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = solar.cc; sourceTree = "<group>"; };
+		1DE650571E7078AD0019A210 /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
+		1DE650581E7078AD0019A210 /* Planet.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Planet.cc; sourceTree = "<group>"; };
+		1DE650591E7078AD0019A210 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		1DE6505A1E7078AD0019A210 /* glheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glheader.h; sourceTree = "<group>"; };
+		1DE6505B1E7078AD0019A210 /* Earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Earth.h; sourceTree = "<group>"; };
+		1DE6505C1E7078AD0019A210 /* Earth.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Earth.cc; sourceTree = "<group>"; };
+		1DE6505D1E7078AD0019A210 /* Celestial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Celestial.h; sourceTree = "<group>"; };
+		1DE6505E1E7078AD0019A210 /* Celestial.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Celestial.cc; sourceTree = "<group>"; };
+		1DE650661E707F110019A210 /* Mars.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mars.cc; sourceTree = "<group>"; };
+		1DE650671E707F110019A210 /* Mars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mars.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1DE6503E1E7077D90019A210 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE650511E7077FF0019A210 /* OpenGL.framework in Frameworks */,
+				1DE6504F1E7077F90019A210 /* GLUT.framework in Frameworks */,
+				1DE6504D1E7077EF0019A210 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1DE650381E7077D90019A210 = {
+			isa = PBXGroup;
+			children = (
+				1DE650431E7077D90019A210 /* hw7 */,
+				1DE650421E7077D90019A210 /* Products */,
+				1DE6504B1E7077EF0019A210 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1DE650421E7077D90019A210 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1DE650411E7077D90019A210 /* hw7 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DE650431E7077D90019A210 /* hw7 */ = {
+			isa = PBXGroup;
+			children = (
+				1D448E611EB788B1002E5749 /* Jupiter.cc */,
+				1D448E5E1EB78879002E5749 /* Jupiter.h */,
+				1DD045681E8047AD00AF8271 /* Saturn.h */,
+				1DD045661E8047A400AF8271 /* Saturn.cc */,
+				1DE650661E707F110019A210 /* Mars.cc */,
+				1DE650671E707F110019A210 /* Mars.h */,
+				1DE650521E7078AD0019A210 /* trackball.h */,
+				1DE650531E7078AD0019A210 /* trackball.cc */,
+				1DE650541E7078AD0019A210 /* Sun.h */,
+				1DE650551E7078AD0019A210 /* Sun.cc */,
+				1DE650561E7078AD0019A210 /* solar.cc */,
+				1DE650571E7078AD0019A210 /* Planet.h */,
+				1DE650581E7078AD0019A210 /* Planet.cc */,
+				1DE650591E7078AD0019A210 /* Makefile */,
+				1DE6505A1E7078AD0019A210 /* glheader.h */,
+				1DE6505B1E7078AD0019A210 /* Earth.h */,
+				1DE6505C1E7078AD0019A210 /* Earth.cc */,
+				1DE6505D1E7078AD0019A210 /* Celestial.h */,
+				1DE6505E1E7078AD0019A210 /* Celestial.cc */,
+			);
+			path = hw7;
+			sourceTree = "<group>";
+		};
+		1DE6504B1E7077EF0019A210 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DE650501E7077FF0019A210 /* OpenGL.framework */,
+				1DE6504E1E7077F90019A210 /* GLUT.framework */,
+				1DE6504C1E7077EF0019A210 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1DE650401E7077D90019A210 /* hw7 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DE650481E7077D90019A210 /* Build configuration list for PBXNativeTarget "hw7" */;
+			buildPhases = (
+				1DE6503D1E7077D90019A210 /* Sources */,
+				1DE6503E1E7077D90019A210 /* Frameworks */,
+				1DE6503F1E7077D90019A210 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hw7;
+			productName = hw7;
+			productReference = 1DE650411E7077D90019A210 /* hw7 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1DE650391E7077D90019A210 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "xingguo zhao";
+				TargetAttributes = {
+					1DE650401E7077D90019A210 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1DE6503C1E7077D90019A210 /* Build configuration list for PBXProject "hw7" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1DE650381E7077D90019A210;
+			productRefGroup = 1DE650421E7077D90019A210 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1DE650401E7077D90019A210 /* hw7 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1DE6503D1E7077D90019A210 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE650631E7078AD0019A210 /* Makefile in Sources */,
+				1DE650601E7078AD0019A210 /* Sun.cc in Sources */,
+				1DE650641E7078AD0019A210 /* Earth.cc in Sources */,
+				1D448E621EB788B1002E5749 /* Jupiter.cc in Sources */,
+				1DE650611E7078AD0019A210 /* solar.cc in Sources */,
+				1DE6505F1E7078AD0019A210 /* trackball.cc in Sources */,
+				1DE650651E7078AD0019A210 /* Celestial.cc in Sources */,
+				1DD045671E8047A400AF8271 /* Saturn.cc in Sources */,
+				1DE6506C1E707F110019A210 /* Mars.cc in Sources */,
+				1DE650621E7078AD0019A210 /* Planet.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DE650461E7077D90019A210 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1DE650471E7077D90019A210 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1DE650491E7077D90019A210 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1DE6504A1E7077D90019A210 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DE6503C1E7077D90019A210 /* Build configuration list for PBXProject "hw7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE650461E7077D90019A210 /* Debug */,
+				1DE650471E7077D90019A210 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DE650481E7077D90019A210 /* Build configuration list for PBXNativeTarget "hw7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE650491E7077D90019A210 /* Debug */,
+				1DE6504A1E7077D90019A210 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1DE650391E7077D90019A210 /* Project object */;
+}

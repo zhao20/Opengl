@@ -1,0 +1,5 @@
+﻿  main.cc
+c:\users\xingguozhao\onedrive\iusb\c481\opengl hw1\winhw1\winhw1\main.cc(11): fatal error C1083: Cannot open include file: 'GL/glut.h': No such file or directory
+  gradient.cc
+c:\users\xingguozhao\onedrive\iusb\c481\opengl hw1\winhw1\winhw1\gradient.cc(11): fatal error C1083: Cannot open include file: 'GL/glut.h': No such file or directory
+  Generating Code...

@@ -1,0 +1,649 @@
+
+<!-- saved from url=(0059)http://cse.csusb.edu/tongyu/courses/cs420/notes/drawing.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><center>
+  <img src="./drawing.php_files/csusb.png">
+<br>                <a style="text-decoration:none" href="http://cse.csusb.edu/tongyu/courses/cs420/"><img border="0" src="./drawing.php_files/cse420.png"></a>
+</center><hr><center><font size="5" color="orange"><b>Lecture Notes</b></font></center>Dr. Tong Yu, Sept. 2013<br>
+  <font size="2">All the materials presented here are adopted from the textbook and
+	the listed references.</font><table><tbody><tr><td><ol></ol><table><tbody><tr><td>1. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/intro.php">Introduction</a></td></tr><tr><td>2. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/bresen.php">Line Drawing</a></td></tr><tr><td>3. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/drawing.php">Drawing Objects</a></td></tr><tr><td>4. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/draw_tool.php">More Drawing Tools</a></td></tr><tr><td>5. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/varray.php">Vertex Array</a></td></tr><tr><td>6. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/normals.php">Normal Vectors and Polygonal Models of Surfaces</a></td></tr><tr><td>7. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/viewing1.php">Viewing I -- Affine Transformations</a></td></tr></tbody></table></td><td valign="top"><table><tbody><tr><td>8. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/viewing2.php">Viewing II -- Projections</a></td></tr><tr><td>9. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/color.php">Color</a></td></tr><tr><td>10. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/lighting.php">Lighting</a></td></tr><tr><td>11. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/blending.php">Blending, antialiasing, fog ..</a></td></tr><tr><td>12. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/displist.php">Display Lists, Bitmaps and Images</a></td></tr><!--<tr><td>14. <a href='scene_graph.php'>Scene Graphs</a></td></tr>--><tr><td>Appendix. <a href="http://cse.csusb.edu/tongyu/courses/cs420/notes/sdl.php">Games and SDL</a></td></tr></tbody></table></td></tr></tbody></table><br>
+<font size="5" color="green"><b>Drawing Objects</b></font>
+<ol>
+<li><font color="blue"><b>World Windows and Viewports</b></font>
+<dir>
+<li><b>Screen System</b>
+<br>
+<center>
+<img src="./drawing.php_files/screen.gif">
+</center>
+ measured in pixels: 
+ <ul>
+  x : 0 --&gt; screenWidth - 1
+ <br>y : 0 --&gt; screenHeight - 1
+ </ul>
+ e.g. 800 x 600 screen, x : 0 - 799, y : 0 - 599
+<br>upper left corner is ( 0, 0 )
+<br>These are <b>screen coordinates, screen window</b>
+<br>In practice, we may <b>not</b> want to think in terms of
+pixels.  It is more natural to think in terms of x varying from
+say, -1.0 to 1.0, and y varying from -50.0 to 200.0.
+<br>These are <b>world coordinates</b>, the space in which the
+objects are described.
+<br><br>
+</li><li><b>World Window</b>
+ <br>
+ the rectangular window in world coordinates, specifying which part
+ of the world to be drawn.
+ <center>
+ <img src="./drawing.php_files/spaces.gif">
+ </center>
+ <br>
+ </li><li><b>Viewport</b>
+ <br>a rectangular space defined in the <b>screen window</b>
+ <ul>
+ <li>a mapping between the world window and the viewport is
+	established
+ </li><li>objects in world window are displayed in viewport
+ </li><li>the viewport can be displayed in anywhere of the screen window
+ </li></ul>
+</li></dir>
+ <br>For 2D drawing, 
+  <ul>
+    <li><b>gluOrtho2D()</b> -- set world window
+    </li><li><b>glViewport()</b> -- set view ports
+	<br> &nbsp; &nbsp; &nbsp; Restrict OpenGL to drawing in only part of the               window (divides the window)
+	<br> &nbsp; &nbsp; &nbsp; Default viewport is entire window
+    <br>
+    <br>Prototypes:
+    <br>void gluOrtho2D( GLdouble left, GLdouble right, GLdouble bottom, GLdouble top );
+    <br>void glViewport( GLint x, GLint y, GLint width, GLint height );
+  </li></ul>
+  <br>
+  Example:
+  <pre>	glMatrixMode ( GL_PROJECTION );
+	glLoadIdentity();
+	gluOrtho2D( 0.0, 2.0, 0.0, 1.0 );	//set world window
+	glViewport( 40, 60, 300, 200 );		//set viewport
+  </pre>
+  <table>
+  <tbody><tr>
+  <td>
+    <table>
+    <tbody><tr><td>(0.0, 1.0)</td><td>&nbsp;</td><td>(2.0, 1.0)</td></tr>
+    <tr><td>&nbsp;</td><td bgcolor="#00FF00" width="150" height="100">
+		&nbsp;</td><td>&nbsp;</td>
+    </tr>
+    <tr><td>(0.0, 0.0)</td><td>&nbsp;</td><td>(2.0, 0.0)</td></tr>
+    <tr><td colspan="3"><center><b>world window</b></center></td></tr>
+    </tbody></table>
+  </td>
+  <td width="100">&nbsp;</td>
+  <td>
+    <table>
+    <tbody><tr><td>(40, 260)</td><td>&nbsp;</td><td>(340, 260)</td></tr>
+    <tr><td>&nbsp;</td><td bgcolor="#0000FF" width="150" height="100">
+		&nbsp;</td><td>&nbsp;</td>
+    </tr>
+    <tr><td>(40, 60)</td><td>&nbsp;</td><td>(340, 60)</td></tr>
+    <tr><td colspan="3"><center><b>viewport</b></center></td></tr>
+    </tbody></table>
+  </td>
+  </tr>
+  </tbody></table>
+  <br>
+  <ul>
+  <li><b>glutInitWindowSize()</b> -- set screen window size  
+  <br>e.g. glutInitWindowSize( 300, 400 );
+  <br><br>
+  </li><li><b>glutInitWindowPosition()</b> -- set screen window position
+  <br>e.g. glutInitWindowPosition (200,100);
+  <br>
+  <table>
+  <tbody><tr>
+  <td width="300" height="200" bgcolor="#e0e0e0">
+    <table>
+    <tbody><tr>
+    	<td valign="bottom" align="right"> (200, 100) </td>
+    	<td><center>300</center></td>
+    	<td>&nbsp;</td>
+    </tr>
+    <tr>
+	<td>&nbsp;</td>
+	<td bgcolor="#a0a0a0" width="150" height="200">&nbsp;</td>
+	<td valign="center">400</td>
+	
+    </tr>
+    </tbody></table>
+  </td>
+  </tr>
+  </tbody></table>
+  </li></ul>
+<br>
+</li><li><font color="blue"><b>OpenGL Drawing Primitives</b></font>
+ <dir>
+  Coordinates are world coordinates
+  <p></p><li><b>Example</b>:
+  <br>
+  <pre>  glBegin ( GL_POLYGON );
+    glVertex2f(0.0, 0.0);
+    glVertex2f(0.0, 3.0);
+    glVertex2f(4.0, 3.0);
+    glVertex2f(6.0, 3.0);
+    glVertex2f(4.0, 3.0);
+  glEnd();
+  </pre>
+  </li><li><b>Primitives</b>:
+  <br>
+  <br>
+  <table>
+  <tbody><tr><th>Value</th><th>&nbsp;</th><th>Meaning</th></tr>
+  <tr>
+	<td>GL_POINTS</td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td>Individual points</td>
+  </tr>
+  <tr>
+	<td>GL_LINES </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> independent line segments, each joining two vertices </td>
+  </tr>
+  <tr>
+	<td>GL_LINE_STRIP </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> series of connected line segments  </td>
+  </tr>
+  <tr>
+	<td>GL_LINE_LOOP </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> series of connected line segments with a segment added
+	between last and first vertices  </td>
+  </tr>
+  <tr>
+	<td> GL_TRIANGLES</td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> triangles, each specified by 3 vertices</td>
+  </tr>
+  <tr>
+	<td>GL_TRIANGLE_STRIP </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> linked strip of triangles, a vertex may be shared by 2 or more triangles</td>
+  </tr>
+  <tr>
+	<td>GL_TRIANGLE_FAN </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td>linked fan of triagnles, all have a common vertex </td>
+  </tr>
+  <tr>
+	<td> GL_QUADS</td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> four-sided polygons, each joining four vertices</td>
+  </tr>
+  <tr>
+	<td>GL_QUAD_STRIP </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td> linked strip of quadrilaterals, shared vertices</td>
+  </tr>
+  <tr>
+	<td>GL_POLYGON </td>
+	<td> &nbsp; &nbsp; &nbsp; </td>
+	<td>simple bounded convex polygon </td>
+  </tr>
+
+  </tbody></table>
+ </li></dir>
+ <center>
+  <img src="./drawing.php_files/primitives.png">
+ </center>
+<br>
+</li><li><font color="blue"><b>Sample Makefile</b></font>
+<p>
+</p><dir>
+<table>
+<tbody><tr><td bgcolor="#e0e0e0">
+<pre>#sample Makefile for using OpenGL in Linux
+                                                                                
+PROG    = draw
+CFLAGS  = -w -s -O2 -ansi -DSHM
+XLIBS   = -lX11 -lXext -lXmu -lXext -lXmu -lXt -lXi -lSM -lICE
+LIBS    = -lglut -lGLU -lGL
+INCLS   = -I/usr/X11R/include -I/share/mesa/include
+LIBDIR  = -L/usr/X11/lib -L/usr/X11R6/lib
+#source codes
+SRCS = draw_main.cpp draw.cpp
+#substitute .cpp by .o to obtain object filenames
+OBJS = $(SRCS:.cpp=.o)
+                                                                                
+#$&lt; evaluates to the target's dependencies,
+#$@ evaluates to the target
+                                                                                
+$(PROG): $(OBJS)
+        g++ -o $@ $(OBJS)  $(LIBDIR) $(LIBS) $(XLIBS)
+$(OBJS):
+        g++ -c  $*.cpp $(INCLS)
+                                                                                
+clean:
+        rm $(OBJS) $(PROG)
+</pre>
+</td></tr>
+</tbody></table>
+</dir>
+<p></p></li><li><font color="blue"><b>Displaying Points, Lines and Polygons</b></font>
+ <dir>
+  <li><b>Point Details</b>
+  <br><b>void glPointSize( GLfloat <i>size</i> )</b>;
+    <ul>set the width in pixels for rendered point; <i>size</i> &gt; 0.0, default
+	is 1.0
+	<li>Antialiasing disabled ( default )
+	<br>fractional widths are rounded to integer widths
+	<br>if <i>size</i> = 2, the dot is 2 pixels by 2 pixels
+	</li><li>Antialiasing enabled 
+	<br>a circular group of pixels is drawn
+	<br>glEnable ( GL_POINT_SMOOTH );
+   </li></ul>
+  <br>
+  </li><li><b>Line Details</b>
+  <ul>
+   <li>Wide Lines
+   <br><b>void glLineWidth( GLfloat <i>width</i> )</b>;
+    set the width in pixels for rendered line; <i>width</i> &gt; 0.0, default
+	is 1.0
+      <dir>
+	<li>Antialiasing disabled ( default )
+	<br>fractional widths are rounded to integer widths ( pixels )
+	</li><li>Antialiasing enabled 
+	<br>fractional line widths are possible
+      </li></dir>
+    <br>
+    </li><li>Stippled Lines
+    <br> dotted or dashed lines
+    <br><b>void glLineStipple ( GLint <i>factor</i>, GLushort <i>pattern</i> );</b>
+     <dir>
+	<li>sets the current stippling pattern for lines
+ 	</li><li><i>pattern</i> is 16-bit number that sets the pattern, 1 =&gt; drawing; 0 =&gt; no drawing
+	</li><li><i>facotr</i> ( 1 to 256 ), for  repeating pattern
+     </li></dir>
+     Example:
+     <dir>
+	<b>
+	glLineStipple(1, 0x3F07 ); <br>
+	glEnable( GL_LINE_STIPPLE );
+	</b>
+	<br> 0x3F07 = 0011 1111 0000 0111 ( binary )
+	<br>a line would be drawn with 3 pixels on, 5 off, 6 on, 2 off
+	<br><br>
+	<b>glLineStipple(2, 0x3F07 ); </b>
+	<br>a line would be drawn with 6 pixels on, 10 off, 12 on, 4 off
+     </dir>
+   </li></ul>
+   <table>
+  <tbody><tr><th>Pattern</th><th>Factor</th><th colspan="6" align="center"><center>Stippled Line</center></th></tr>
+  <tr><td>0x00FF</td><td align="center">1</td>
+	<td width="20"><hr></td><td width="20">&nbsp;</td>
+	<td width="20"><hr></td><td width="20">&nbsp;</td>
+	<td width="20"><hr></td><td width="20">&nbsp;</td>
+  </tr>
+  <tr><td>0x00FF</td><td align="center">2</td>
+	<td colspan="2"><hr></td>
+	<td colspan="2">&nbsp;</td>
+	<td colspan="2"><hr></td>
+  </tr>
+  </tbody></table>
+  <br>
+<p><img src="./drawing.php_files/pattern.gif">
+</p><p>
+<table>
+<tbody><tr>
+<td bgcolor="#e0e0e0">
+<pre>/*
+ *  lines.c
+ *  This program demonstrates geometric primitives and
+ *  their attributes.
+ */
+#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define drawOneLine(x1,y1,x2,y2)  glBegin(GL_LINES);  \
+   glVertex2f ((x1),(y1)); glVertex2f ((x2),(y2)); glEnd();
+
+void init(void) 
+{
+   glClearColor (0.0, 0.0, 0.0, 0.0);
+   glShadeModel (GL_FLAT);
+}
+
+void display(void)
+{
+   int i;
+
+   glClear (GL_COLOR_BUFFER_BIT);
+
+/* select white for all lines  */
+   glColor3f (1.0, 1.0, 1.0);
+
+/* in 1st row, 3 lines, each with a different stipple  */
+   glEnable (GL_LINE_STIPPLE);
+   
+   glLineStipple (1, 0x0101);  /*  dotted  */
+   drawOneLine (50.0, 125.0, 150.0, 125.0);
+   glLineStipple (1, 0x00FF);  /*  dashed  */
+   drawOneLine (150.0, 125.0, 250.0, 125.0);
+   glLineStipple (1, 0x1C47);  /*  dash/dot/dash  */
+   drawOneLine (250.0, 125.0, 350.0, 125.0);
+
+/* in 2nd row, 3 wide lines, each with different stipple */
+   glLineWidth (5.0);
+   glLineStipple (1, 0x0101);  /*  dotted  */
+   drawOneLine (50.0, 100.0, 150.0, 100.0);
+   glLineStipple (1, 0x00FF);  /*  dashed  */
+   drawOneLine (150.0, 100.0, 250.0, 100.0);
+   glLineStipple (1, 0x1C47);  /*  dash/dot/dash  */
+   drawOneLine (250.0, 100.0, 350.0, 100.0);
+   glLineWidth (1.0);
+
+/* in 3rd row, 6 lines, with dash/dot/dash stipple  */
+/* as part of a single connected line strip         */
+   glLineStipple (1, 0x1C47);  /*  dash/dot/dash  */
+   glBegin (GL_LINE_STRIP);
+   for (i = 0; i &lt; 7; i++)
+      glVertex2f (50.0 + ((GLfloat) i * 50.0), 75.0);
+   glEnd ();
+
+/* in 4th row, 6 independent lines with same stipple  */
+   for (i = 0; i &lt; 6; i++) {
+      drawOneLine (50.0 + ((GLfloat) i * 50.0), 50.0,
+         50.0 + ((GLfloat)(i+1) * 50.0), 50.0);
+   }
+
+/* in 5th row, 1 line, with dash/dot/dash stipple    */
+/* and a stipple repeat factor of 5                  */
+   glLineStipple (5, 0x1C47);  /*  dash/dot/dash  */
+   drawOneLine (50.0, 25.0, 350.0, 25.0);
+
+   glDisable (GL_LINE_STIPPLE);
+   glFlush ();
+}
+
+void reshape (int w, int h)
+{
+   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+   glMatrixMode (GL_PROJECTION);
+   glLoadIdentity ();
+   gluOrtho2D (0.0, (GLdouble) w, 0.0, (GLdouble) h);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+   switch (key) {
+      case 27:
+         exit(0);
+         break;
+   }
+}
+
+int main(int argc, char** argv)
+{
+   glutInit(&amp;argc, argv);
+   glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+   glutInitWindowSize (400, 150); 
+   glutInitWindowPosition (100, 100);
+   glutCreateWindow (argv[0]);
+   init ();
+   glutDisplayFunc(display); 
+   glutReshapeFunc(reshape);
+   glutKeyboardFunc(keyboard);
+   glutMainLoop();
+   return 0;
+}
+</pre>
+</td>
+</tr>
+</tbody></table> 
+  <br>
+  </p></li><li><b>Polygon Details</b>
+  <ul>
+   a <b>polygon</b> is a plane figure specified by a set of 3 or more
+	vertices ( coordinate positions )
+    <br>simple ( standard ) polygons -- polygons whose edges do not cross
+   <br><b>back face</b> -- the side of a polygon that faces into the object
+	interior
+   <br><b>front face</b> -- the visible, outward side
+   <p>Each polygon in a scene is contained within a plane of infinite extent
+	</p><dir>
+		A x + B y + C z + D = 0
+	</dir>
+	where ( x, y, z ) is any point on the plane
+	<br>&nbsp;
+	<dir>
+		if A x + B y + C z + D &lt; 0 ,
+		the point ( x, y, z ) is behind the plane
+	</dir>
+	<dir>
+		if A x + B y + C z + D &gt; 0 ,
+		the point ( x, y, z ) is before the plane
+	</dir>
+    <br><br>
+   <li>Typically drawn by filling in all pixels enclosed within the boundary ( default )
+	<dir><b>glPolygonMode( GL_FRONT, GL_FILL )</b>;
+	<br><b>glPolygonMode( GL_BACK, GL_FILL )</b>;
+	</dir>
+    <br>
+   </li><li>Can also draw them as outlined polygons
+	<dir><b>glPolygonMode( GL_FRONT, GL_LINE )</b>;</dir>
+    <br>
+   </li><li>Or simply drawn as points
+	<dir><b>glPolygonMode( GL_FRONT, GL_POINT )</b>;</dir>
+    <br>
+   </li><li>A filled polygon might be solidly filled or stippled with a certain pattern
+    <br>&nbsp;
+   </li><li>By convention polygons whose vertices appear in counterclockwise order
+		on screen are called <b>front-facing</b> but users can
+	also make clockwise order as front-facing
+	<dir>
+	<b>glFrontFace( GL_CCW )</b>; &nbsp; &nbsp; //counterclockwise
+	<br><b>glFrontFace( GL_CW )</b>; &nbsp; &nbsp; //clockwise
+	</dir>
+	Orientation of vertices is also known as <b>winding</b>.
+    <br>&nbsp;
+   </li><li>Culling --  discarding ( ignore ) invisible polygons during rendering
+	<br>e.g. back faces of an enclosed opaque polygon
+	<br>enableb by <b>glEnable( GL_CULL_FACE )</b>;
+	<dir>
+	<br><b>glCullFace ( GL_FRONT )</b>;
+	<br><b>glCullFace ( GL_BACK )</b>;
+	<br><b>glCullFace ( GL_FRONT_AND_BACK )</b>;
+	</dir>
+	<br><font color="#00E000"><b>Class Exercise</b></font>:
+	<table>
+	<tbody><tr><td bgcolor="#e0e0e0">
+	<pre> 	glEnable( GL_CULL_FACE );
+  	glCullFace ( GL_BACK );
+  	glColor3f( 1.0, 0.0, 0.0 );           //red
+   	glFrontFace ( GL_CCW );
+  	glPolygonMode( GL_FRONT, GL_FILL );
+  	glBegin( GL_POLYGON );                //draw solid polygon
+    	  glVertex2i( 0, 0 );
+    	  glVertex2i( 0, 100 );
+    	  glVertex2i( 100, 100 );
+    	  glVertex2i( 100, 0 );
+  	glEnd();
+	</pre>
+	</td></tr>
+	</tbody></table>
+	<table><tbody><tr><td bgcolor="#d0d0f0">
+	What do you expect to see on the display, assuming everything 
+	has been initialized properly?
+
+	<!-- Answer: see nothing  ( because in CC direction => back-facing -->
+	</td></tr>
+	</tbody></table>
+   <p></p></li><li>Area 
+	<dir>
+	<table>
+	<tbody><tr>
+	<td>&nbsp;</td>
+	<td><sub>n-1</sub></td>
+	<td> &nbsp; </td>
+	</tr>
+	<tr>
+	<td>A = ½</td>
+	<td> <img src="./drawing.php_files/sum.gif"></td>
+	<td>x<sub>i</sub> y<sub>i+1</sub> - x<sub>i+1</sub> y<sub>i</sub></td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td><sup>i=0</sup></td>
+	<td> &nbsp; </td>
+	</tr>
+	</tbody></table>
+	</dir>
+  <!-- like calculating determinant of matrix -->
+  where i + 1 is taken mod n.
+  <br>for GL_CCW, if A &gt; 0, &nbsp; &nbsp; =&gt; front-facing, otherwise back-facing
+  <br>for GL_CW, if A &lt; 0, &nbsp; &nbsp; =&gt;  front-facing, otherwise back-facing
+
+  <p></p></li><li>Stippling Polygons
+	<dir>
+	<b>glEnable ( GL_POLYGON_STIPPLE )</b>;
+	</dir>
+	setting pattern by
+	<dir>
+	<b>void glPolygonStipple( const Glubyte *mask )</b>;
+	<br>mask is a 32 x 32 pattern of bits
+	<br>aligned with the window, thus rotate the polygon won't
+	rotate the stipple pattern
+	</dir>
+  <p></p></li><li>Examples
+  <br><b>Drawing polygons with different modes</b>
+  <br>
+	<table>
+	<tbody><tr>
+	<td>
+	 <table>
+	  <tbody><tr>
+	  <td bgcolor="#e0e0e0">
+	  <pre>  int x0, y0; 
+  glColor3f( 1.0, 0.0, 0.0 );           //red
+  glPolygonMode( GL_FRONT, GL_FILL );
+  glBegin( GL_POLYGON );                //draw solid polygon
+    glVertex2i( 10, 10 );
+    glVertex2i( 100, 10 );  
+    glVertex2i( 150, 50 );   
+    glVertex2i( 100, 100 );  
+    glVertex2i( 50, 80 );
+    glVertex2i( 10, 10 );     
+  glEnd();
+  x0 = 160;
+  glColor3f( 0.0, 1.0, 0.0 );           //green
+  glPolygonMode( GL_FRONT, GL_LINE );
+  glBegin( GL_POLYGON );                //draw polygon
+    glVertex2i( x0+10, 10 );
+    glVertex2i( x0+100, 10 );
+    glVertex2i( x0+150, 50 );
+    glVertex2i( x0+100, 100 );
+    glVertex2i( x0+50, 80 );  
+    glVertex2i( x0+10, 10 );
+  glEnd(); 
+  x0 = 80;
+  y0 = 120;
+  glColor3f( 0.0, 0.0, 1.0 );           //blue
+  glPolygonMode( GL_FRONT, GL_POINT );
+  glBegin( GL_POLYGON );                //draw polygon points
+    glVertex2i( x0+10, y0+10 );
+    glVertex2i( x0+100, y0+10 );
+    glVertex2i( x0+150, y0+50 ); 
+    glVertex2i( x0+100, y0+100 );
+    glVertex2i( x0+50, y0+80 );
+    glVertex2i( x0+10, y0+10 );
+  glEnd(); 
+	  </pre>
+	  </td>
+	  </tr>
+	 </tbody></table>
+	</td>
+	<td valign="center">
+	<img src="./drawing.php_files/polygons.png">
+	</td>
+	</tr>
+	</tbody></table>  
+  </li></ul>
+  <br><br>
+  <b>Stippled Polygons</b>
+  <br>
+  <table>
+  <tbody><tr>
+  <td>
+  <table>
+  <tbody><tr><td bgcolor="#e0e0e0">
+  <pre> GLubyte fly[] = {
+      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+      0x03, 0x80, 0x01, 0xC0, 0x06, 0xC0, 0x03, 0x60,
+      0x04, 0x60, 0x06, 0x20, 0x04, 0x30, 0x0C, 0x20,
+      0x04, 0x18, 0x18, 0x20, 0x04, 0x0C, 0x30, 0x20,
+      0x04, 0x06, 0x60, 0x20, 0x44, 0x03, 0xC0, 0x22,
+      0x44, 0x01, 0x80, 0x22, 0x44, 0x01, 0x80, 0x22,
+      0x44, 0x01, 0x80, 0x22, 0x44, 0x01, 0x80, 0x22,
+      0x44, 0x01, 0x80, 0x22, 0x44, 0x01, 0x80, 0x22,
+      0x66, 0x01, 0x80, 0x66, 0x33, 0x01, 0x80, 0xCC,
+      0x19, 0x81, 0x81, 0x98, 0x0C, 0xC1, 0x83, 0x30,
+      0x07, 0xe1, 0x87, 0xe0, 0x03, 0x3f, 0xfc, 0xc0,
+      0x03, 0x31, 0x8c, 0xc0, 0x03, 0x33, 0xcc, 0xc0,
+      0x06, 0x64, 0x26, 0x60, 0x0c, 0xcc, 0x33, 0x30,
+      0x18, 0xcc, 0x33, 0x18, 0x10, 0xc4, 0x23, 0x08,
+      0x10, 0x63, 0xC6, 0x08, 0x10, 0x30, 0x0c, 0x08,
+      0x10, 0x18, 0x18, 0x08, 0x10, 0x00, 0x00, 0x08};
+
+ GLubyte simple_pattern[] = {
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0xff, 0xff, 0x00, 0x00, 0xff, 0xff,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+  };
+
+   glColor3f( 1.0f, 0.0f, 0.0f );       //red
+   glRectf (25.0, 25.0, 125.0, 125.0);  //regular rectangle
+
+   glEnable (GL_POLYGON_STIPPLE);	//stippled rectangles
+   glColor3f( 0.0f, 1.0f, 0.0f );       //green
+   glPolygonStipple (fly);
+
+   glRectf (125.0, 25.0, 225.0, 125.0);
+   glPolygonStipple ( simple_pattern );
+   glColor3f( 0.0f, 0.0f, 1.0f );       //blue
+
+   glRectf (225.0, 25.0, 325.0, 125.0);
+   glDisable (GL_POLYGON_STIPPLE);
+  </pre>
+  </td></tr>
+  </tbody></table>
+  </td>
+  <td valign="center">
+  <img src="./drawing.php_files/polys.png"> 
+  </td>
+  </tr>
+  </tbody></table>
+  <pre>   void glBitmap(	GLsizei  	width, 
+ 	GLsizei  	height, 
+ 	GLfloat  	xorig, 
+ 	GLfloat  	yorig, 
+ 	GLfloat  	xmove, 
+ 	GLfloat  	ymove, 
+ 	const GLubyte *  	bitmap);
+  </pre>
+ </li></dir>
+</li></ol>
+<!--
+-->
+<!--
+-->
+</body></html>

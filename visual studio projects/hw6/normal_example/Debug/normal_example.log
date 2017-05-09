@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\normal_example\source.cpp(23): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\zhaox\onedrive\iusb\c481\visual studio projects\hw6\normal_example\source.cpp(62): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+  normal_example.vcxproj -> C:\Users\zhaox\OneDrive\IUSB\C481\visual studio projects\hw6\Debug\normal_example.exe
+  normal_example.vcxproj -> C:\Users\zhaox\OneDrive\IUSB\C481\visual studio projects\hw6\Debug\normal_example.pdb (Partial PDB)
